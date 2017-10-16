@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-const uuidv1 = require('uuid')
+import { update } from 'ramda'
 
 import '../css/style.css'
 import keenImage from '../assets/keen.png'
@@ -60,7 +60,7 @@ export default class App extends Component {
 
     if (idx !== -1) {
       this.setState({
-       videos: [...this.state.videos]
+       videos: update(idx, foundElem , this.state.videos)
       })
     }
   }
