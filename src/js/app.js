@@ -18,7 +18,9 @@ const VideoLink = ({ video, videoModal, modalHandler, isWatchedHandler }) => <tr
 </tr>
 
 const Checkbox = ({ isWatched, isWatchedHandler, id }) => (
-  <input type="checkbox" value={isWatched} onChange={v => isWatchedHandler(v, id)} />
+  <input type="checkbox"
+            value={isWatched}
+            onChange={v => isWatchedHandler(v, id)} />
 )
 
 const VideoModal = ({ videoModal, modalHandler }) => {
