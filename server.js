@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const path = require('path')
 const fs = require('fs')
 const cors = require('cors')
 const uuidv4 = require('uuid/v4')
@@ -21,7 +20,7 @@ fs.readdir(__dirname, function(err, items) {
 
 app.use(cors())
 app.get('/', function (req, res) {
-  res.send({"data": videoList})
+  res.send({'data': videoList})
 })
 
 app.listen(4321, function () {
