@@ -1,0 +1,10 @@
+name: keen-learner
+root: ~/Documents/projects/keen-learner-app
+
+windows:
+  - dev:
+    - npm run dev
+    - npm run lint
+  - app:  npm run app
+  - shell: git status
+
