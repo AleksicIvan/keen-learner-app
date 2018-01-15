@@ -1,5 +1,10 @@
 # KEEN LEARNER APP
-This app should be installed in dir with video files. The files should start w/ 01, 02...
+Clone the repo in directory with video files. The files should start w/ 01, 02...
+First run `npm run read-dir` to get video files from directory where you cloned project.
+Then run `npm run lint`, `npm run dev` and `npm run app` in separate terminals.
+Running lint is not required unless you would like to change code.
+
+If you are using tmux + tmuxinator there is tmuxinator config file.
 
 _DESIGN:_
   Three pages. Landing, List of videos and Single video page.
