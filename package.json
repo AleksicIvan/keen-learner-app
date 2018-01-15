@@ -10,6 +10,7 @@
     "eslint": "^4.15.0",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-react": "^7.5.1",
+    "eslint-watch": "^3.1.3",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
     "html-webpack-plugin": "^2.30.1",
@@ -18,7 +19,7 @@
     "webpack-jarvis": "^0.1.1"
   },
   "scripts": {
-    "lint": "./node_modules/.bin/eslint src",
+    "lint": "./node_modules/.bin/esw -w src",
     "build": "webpack",
     "dev": "webpack-dev-server",
     "app": "nodemon server.js"
