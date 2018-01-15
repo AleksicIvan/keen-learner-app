@@ -11,6 +11,7 @@ fs.readdir(__dirname, function(err, items) {
   if (err) {
     return
   }
+
   videoList = items
     .filter(item => videoExt.test(item))
     .map((v) => {
@@ -20,7 +21,10 @@ fs.readdir(__dirname, function(err, items) {
 
 app.use(cors())
 app.get('/', function (req, res) {
-  res.send({'data': videoList})
+  fs.readFile('data.json', (err, data) => {
+    if (err) throw err
+    res.send(data)
+  })
 })
 
 app.listen(4321, function () {

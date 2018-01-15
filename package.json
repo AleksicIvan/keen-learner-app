@@ -1,5 +1,5 @@
 {
-  "name": "course-helper",
+  "name": "keen-learner-app",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
@@ -19,6 +19,7 @@
     "webpack-jarvis": "^0.1.1"
   },
   "scripts": {
+    "read-dir": "node readDirWithVideos.js",
     "lint": "./node_modules/.bin/esw -w src",
     "build": "webpack",
     "dev": "webpack-dev-server",
