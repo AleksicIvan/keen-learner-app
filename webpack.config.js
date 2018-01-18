@@ -1,8 +1,9 @@
-const path = require("path")
+const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const Jarvis = require('webpack-jarvis')
+// const Jarvis = require('webpack-jarvis')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
@@ -26,7 +27,10 @@ module.exports = {
       template: path.join(paths.SRC, 'index.html'),
     }),
     new ExtractTextPlugin('style.bundle.css'),
-    new Jarvis()
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static'
+    }),
+    // new Jarvis()
   ],
 
   module: {

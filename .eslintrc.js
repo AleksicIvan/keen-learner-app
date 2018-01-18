@@ -10,6 +10,7 @@ module.exports = {
         "module": true,
     },
     "extends": "eslint:recommended",
+    // "extends": ["plugin:prettier/recommended"],
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
@@ -21,12 +22,15 @@ module.exports = {
     },
     "plugins": [
         "babel",
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
+        // "prettier/prettier": "error",
         "indent": ["error", 2],
         "linebreak-style": [ "error", "unix" ],
         "quotes": [ "error", "single" ],
+        "no-console": ["error", { allow: ["warn", "error", "log"] }],
         "semi": [ "error", "never"],
         "react/jsx-boolean-value": 0,
         "react/jsx-closing-bracket-location": 1,
