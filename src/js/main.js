@@ -35,11 +35,35 @@ export default class Main extends Component {
   isWatchedHandler (v, id) {
     let idx = this.state.videos.findIndex(e => e.id === id)
     let foundElem = this.state.videos[idx]
-    // let changeWatched = foundElem ? foundElem.watched = !foundElem.watched : {}
+
+    if (foundElem) {
+      foundElem.watched = !foundElem.watched
+    }
+
+    let data = {
+      id,
+      watched: foundElem.watched
+    }
 
     if (idx !== -1) {
       this.setState({
-        videos: update(idx, foundElem , this.state.videos)
+        videos: update(idx, foundElem, this.state.videos)
+      }, () => {
+        fetch('http://localhost:4321/update', {
+          method: 'PUT',
+          body: JSON.stringify(data),
+          headers: new Headers({
+            'Content-Type': 'application/json'
+          })
+        })
+          .then(res => {
+            if (res.status === 200) {
+              console.log('Succesful update')
+            }
+          })
+          .catch(err => {
+            console.error(err)
+          })
       })
     }
   }
@@ -63,7 +87,10 @@ export default class Main extends Component {
         <h1>Keen on learning?</h1>
         <img src={ keenImage } alt='Commander Keen' />
 
-        <VideoModal videoModal={ this.state.videoModal } modalHandler={ this.modalHandler } />
+        <VideoModal
+          videoModal={ this.state.videoModal }
+          modalHandler={ this.modalHandler }
+        />
 
         <table>
           <thead>
@@ -79,7 +106,12 @@ export default class Main extends Component {
           <tbody>
 
             {videos.length !== 0
-              ? videos.map((video) => <VideoLink  video={ video } isWatchedHandler={ this.isWatchedHandler } modalHandler={ this.modalHandler } key={ video.id } />)
+              ? videos.map((video) => <VideoLink
+                video={ video }
+                isWatchedHandler={ this.isWatchedHandler }
+                modalHandler={ this.modalHandler }
+                key={ video.id } />
+              )
               : null
             }
 
