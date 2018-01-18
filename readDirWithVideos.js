@@ -10,8 +10,6 @@ fs.readdir(__dirname, function(err, items) {
   videoList = items
     .filter(item => videoExt.test(item))
     .map((v) => {
-      // TODO: we hardcoded watched here,
-      // we are gonna change it as soon as posible
       return { name: `/${v}`, id: uuidv4(), watched: false }
     })
 
