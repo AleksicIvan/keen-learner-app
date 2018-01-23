@@ -1,7 +1,9 @@
 const fs = require('fs')
 const uuidv4 = require('uuid/v4')
+const level = require('level')
 
 let videoList = []
+const db = level('./videolistDb')
 const videoExt = /\.(webm|mp4|ogg)$/
 
 fs.readdir(__dirname, function(err, items) {
@@ -19,9 +21,9 @@ fs.readdir(__dirname, function(err, items) {
 
   let stringifiedData = JSON.stringify(data, null, ' ')
 
-  fs.writeFile('data.json', stringifiedData, (err) => {
+  db.put('data', stringifiedData, err => {
     if (err) throw err
-    console.log('Finished writing data.json')
+    console.log('DB update success')
   })
 })
 

@@ -1,17 +1,18 @@
 const express = require('express')
 const app = express()
-const fs = require('fs')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const R = require('ramda')
+const level = require('level')
+const db = level('./videolistDb')
 
 app.use(cors())
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
-  fs.readFile('data.json', 'utf-8', function (err, data) {
+  db.get('data', (err, value) => {
     if (err) throw err
-    res.send(data)
+    res.send(value)
   })
 })
 
@@ -19,8 +20,15 @@ app.put('/update', function (req, res) {
   const id = req.body.id
   const isWatched = req.body.watched
 
-  fs.readFile('data.json', 'utf-8', function (err, videos) {
-    if (err) throw err
+  db.get('data', (err, videos) => {
+    if (err) {
+      if (err.notFound) {
+        console.log('Resource not found')
+        return {data: []}
+      }
+      throw err
+    }
+
     let parsedVideos = JSON.parse(videos)
     let idx = parsedVideos.data.findIndex(e => e.id === id)
     let foundElem = parsedVideos.data[idx]
@@ -29,11 +37,12 @@ app.put('/update', function (req, res) {
     let strigifiedNewData = JSON.stringify({
       data: newData
     }, null, ' ')
-    fs.writeFile('data.json', strigifiedNewData, (err) => {
+
+    db.put('data', strigifiedNewData, err => {
       if (err) throw err
-      console.log('Finished writing data.json')
+      console.log('DB update success')
+      res.send(strigifiedNewData)
     })
-    res.send(strigifiedNewData)
   })
 })
 
