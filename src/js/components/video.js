@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ReactPlayer from 'react-player'
 
 import loader from '../../assets/Loading_icon.gif'
 
@@ -18,15 +19,21 @@ export default class Video extends Component {
   }
 
   render () {
-    return <video poster={ this.state.ready ? null : loader }
-      width="640"
-      height="480" controls
-      onLoadedData={ () => this.handleOnLoad() } >
-      <source src={ this.props.videoModal.src } type="video/mp4" />
-    </video>
+    return <div className='player-wrapper'>
+      <ReactPlayer className='react-player'
+        width='100%'
+        height='100%'
+        poster={ this.state.ready ? null : loader }
+        url={ this.props.videoModal.src }
+        controls
+        onReady={ () => this.handleOnLoad() }
+        onEnded={ () => this.props.isWatchedHandler(true, this.props.videoModal.videoId) } >
+      </ReactPlayer>
+    </div>
   }
 }
 
 Video.propTypes = {
-  videoModal: PropTypes.object
+  videoModal: PropTypes.object,
+  isWatchedHandler: PropTypes.func,
 }

@@ -1,21 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Table, Icon } from 'semantic-ui-react'
 
-import Checkbox from './checkbox'
 
-
-const VideoLink = ({ video, modalHandler, isWatchedHandler }) => <tr>
-  <td>
-    <button onClick={ () => modalHandler(video.name) }>{video.name}</button>
-  </td>
-  <td>
-    <Checkbox isWatched={ video.watched } isWatchedHandler={ isWatchedHandler } id={ video.id } />
-  </td>
-</tr>
+const VideoLink = ({ video, openModal }) => <Table.Row
+  key={ video.id }
+  positive={ video.watched }>
+  <Table.Cell onClick={ () => openModal(video) }>{video.name}</Table.Cell>
+  <Table.Cell>
+    <Icon name={ video.watched ? 'checkmark' : 'close' } />Watched &nbsp;
+  </Table.Cell>
+</Table.Row>
 
 VideoLink.propTypes = {
   video: PropTypes.object,
-  modalHandler: PropTypes.func,
+  openModal: PropTypes.func,
   isWatchedHandler: PropTypes.func
 }
 
