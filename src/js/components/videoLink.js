@@ -15,7 +15,6 @@ const VideoLink = ({ video, openModal }) => <Table.Row
 VideoLink.propTypes = {
   video: PropTypes.object,
   openModal: PropTypes.func,
-  isWatchedHandler: PropTypes.func
 }
 
 export default VideoLink
