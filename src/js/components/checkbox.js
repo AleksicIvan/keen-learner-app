@@ -4,7 +4,11 @@ import { Checkbox } from 'semantic-ui-react'
 
 
 const Main = ({ isWatched, isWatchedHandler, id, label }) => {
-  return <Checkbox defaultChecked={ isWatched } label={ label } type="checkbox" onChange={ v => isWatchedHandler(v, id) } />
+  return <Checkbox
+    checked={ isWatched }
+    label={ label }
+    type="checkbox"
+    onChange={ v => isWatchedHandler(v, id) } />
 }
 
 Checkbox.propTypes = {
