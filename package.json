@@ -1,5 +1,6 @@
 {
   "name": "keen-learner-app",
+  "main": "electron.js",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
@@ -23,17 +24,24 @@
     "webpack-bundle-analyzer": "^2.9.2",
     "webpack-cli": "^2.0.4",
     "webpack-dev-server": "^2.11.1",
-    "webpack-jarvis": "^0.1.1"
+    "webpack-jarvis": "^0.1.1",
+    "concurrently": "^3.5.1",
+    "electron": "^1.7.11",
+    "electron-builder": "^19.55.2",
+    "wait-on": "^2.1.0"
   },
   "scripts": {
     "read-dir": "node readDirWithVideos.js",
     "lint": "./node_modules/.bin/esw -w src",
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "app": "nodemon server.js"
+    "app": "nodemon server.js",
+    "electron": "electron ./dist/electron.js"
   },
   "dependencies": {
+    "@ljharb/eslint-config": "^12.2.1",
     "cors": "^2.8.4",
+    "electron-is-dev": "^0.3.0",
     "express": "^4.16.2",
     "level": "^2.1.1",
     "nodemon": "^1.12.1",
