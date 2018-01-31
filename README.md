@@ -7,15 +7,12 @@ Running lint is not required unless you would like to change code.
 If you are using tmux + tmuxinator there is tmuxinator config file.
 
 _DESIGN:_
-  Three pages. Landing, List of videos and Single video page.
-  List shows just links with checkboxes (watched or not).
-  Single page lets you add comment (textarea) for future reference.
+  One page. List of clickable links with video names and when clicked open video modal.
+  List shows just links with current state of the video (watched or not).
 
   # TODO:
- - SERVER: It should keep state of finished/watched videos in a record file (It reads from there intially).
- - SERVER: After reading dir, write to record.json file
- - CLIENT: After watching check watched autmatically, send PUT to update record.json
  - SERVER: Read nested folders not just root
+ - CLIENT/SERVER: Add notes feature, so user can add some info about watched video
 
 
 _ARCHITECTURE:_
@@ -25,5 +22,5 @@ _ARCHITECTURE:_
   2. React
 
 _IDEAS:_
-  1. Make it Electron app
+  1. Make it full Electron app - for now you can switch to add-electron branch and run `npm run electron`
 
