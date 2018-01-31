@@ -22,5 +22,4 @@ _ARCHITECTURE:_
   2. React
 
 _IDEAS:_
-  1. Make it full Electron app - for now you can switch to add-electron branch and run `npm run electron`
-
+  1. Make it full Electron app - for now you can switch to add-electron branch and run `npm run electron` after you've already started server and client.
