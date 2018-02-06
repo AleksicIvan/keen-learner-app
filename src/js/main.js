@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { update } from 'ramda'
+import { update } from 'ramda/es'
 
 import '../css/style.css'
 // import keenImage from '../assets/keen.png'
