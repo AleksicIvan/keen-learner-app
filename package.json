@@ -19,6 +19,7 @@
     "file-loader": "^1.1.5",
     "html-webpack-plugin": "^2.30.1",
     "prettier": "1.10.2",
+    "rimraf": "^2.6.2",
     "webpack": "^3.7.1",
     "webpack-bundle-analyzer": "^2.9.2",
     "webpack-cli": "^2.0.4",
@@ -28,8 +29,9 @@
   "scripts": {
     "read-dir": "node readDirWithVideos.js",
     "lint": "./node_modules/.bin/esw -w src",
-    "build": "webpack",
-    "dev": "webpack-dev-server",
+    "rimraf": "rimraf dist",
+    "build": "rimraf dist && NODE_ENV=production webpack --config webpack.config.js",
+    "dev": "NODE_ENV=development node dev-server.js",
     "app": "nodemon server.js"
   },
   "dependencies": {

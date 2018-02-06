@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -11,8 +12,52 @@ const paths = {
   JS: path.resolve(__dirname, 'src/js'),
 }
 
+const DEVELOPMENT = process.env.NODE_ENV === 'development'
+const PRODUCTION = process.env.NODE_ENV === 'production'
+
+const entry = PRODUCTION
+  ? [
+    path.join(paths.JS, 'app.js'),
+  ] : [
+    path.join(paths.JS, 'app.js'),
+    'webpack/hot/dev-server',
+    'webpack-dev-server/client?http://localhost:8080'
+  ]
+
+const plugins = PRODUCTION
+  ? [
+    new webpack.optimize.UglifyJsPlugin(),
+    new ExtractTextPlugin('style.bundle.css'),
+    new HtmlWebpackPlugin({
+      template: path.join(paths.SRC, 'index.html')
+    }),
+    new webpack.DefinePlugin({
+      DEVELOPMENT: JSON.stringify(DEVELOPMENT),
+      PRODUCTION: JSON.stringify(PRODUCTION)
+    }),
+  ]
+  : [
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(paths.SRC, 'index.html'),
+    }),
+    new ExtractTextPlugin('style.bundle.css'),
+    new webpack.HotModuleReplacementPlugin(),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static'
+    // }),
+    new webpack.DefinePlugin({
+      DEVELOPMENT: JSON.stringify(DEVELOPMENT),
+      PRODUCTION: JSON.stringify(PRODUCTION)
+    }),
+    new Jarvis()
+  ]
+
 module.exports = {
-  entry: path.join(paths.JS, 'app.js'),
+  devtool: 'source-map',
+  entry: entry,
   output: {
     path: paths.DIST,
     filename: 'app.bundle.js'
@@ -22,16 +67,7 @@ module.exports = {
   //   contentBase: paths.SRC
   // },
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(paths.SRC, 'index.html'),
-    }),
-    new ExtractTextPlugin('style.bundle.css'),
-    // new BundleAnalyzerPlugin({
-    //   analyzerMode: 'static'
-    // }),
-    new Jarvis()
-  ],
+  plugins: plugins,
 
   module: {
     rules: [

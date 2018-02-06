@@ -3,4 +3,11 @@ import { render } from 'react-dom'
 
 import Main from './main'
 
+if (DEVELOPMENT) {
+  if (module.hot) {
+    module.hot.accept()
+  }
+}
+
+
 render(<Main />, document.getElementById('app'))
