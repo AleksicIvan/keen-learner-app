@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const R = require('ramda')
+const update = require('ramda/src/update')
 const level = require('level')
 const db = level('./videolistDb')
 
@@ -33,7 +33,7 @@ app.put('/update', function (req, res) {
     let idx = parsedVideos.data.findIndex(e => e.id === id)
     let foundElem = parsedVideos.data[idx]
     let newFoundElem = {...foundElem, watched: isWatched}
-    let newData = R.update(idx, newFoundElem, parsedVideos.data)
+    let newData = update(idx, newFoundElem, parsedVideos.data)
     let strigifiedNewData = JSON.stringify({
       data: newData
     }, null, ' ')
