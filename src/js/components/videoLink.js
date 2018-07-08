@@ -6,7 +6,7 @@ import { Table, Icon } from 'semantic-ui-react'
 const VideoLink = ({ video, openModal }) => <Table.Row
   key={ video.id }
   positive={ video.watched }>
-  <Table.Cell onClick={ () => openModal(video) }>{video.name}</Table.Cell>
+  <Table.Cell onClick={ () => openModal(video) }>{video.name.substring(8, video.name.length)}</Table.Cell>
   <Table.Cell>
     <Icon name={ video.watched ? 'checkmark' : 'close' } />Watched &nbsp;
   </Table.Cell>
