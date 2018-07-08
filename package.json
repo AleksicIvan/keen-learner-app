@@ -26,7 +26,7 @@
     "webpack-dev-server": "^2.11.1",
     "webpack-jarvis": "^0.1.1",
     "concurrently": "^3.5.1",
-    "electron": "^1.7.11",
+    "electron": "^2.0.2",
     "electron-builder": "^19.55.2",
     "wait-on": "^2.1.0"
   },
@@ -36,7 +36,8 @@
     "build": "webpack",
     "dev": "webpack-dev-server",
     "app": "nodemon server.js",
-    "electron": "electron ./dist/electron.js"
+    "copy-electron-js": "node copy-electron-to-dist.js",
+    "electron": "npm run copy-electron-js && electron ./dist/electron.js"
   },
   "dependencies": {
     "@ljharb/eslint-config": "^12.2.1",
