@@ -3,7 +3,7 @@ const fs = require('fs')
 const FROM = `${__dirname}/src/js/electron.js`
 const TO = `${__dirname}/dist/electron.js`
 
-const distExists = fs.existsSync(`${__dirname}/dist}`)
+const distExists = fs.existsSync(`${__dirname}/dist`)
 
 if (distExists) {
   fs.copyFile(FROM, TO, (err) => {
