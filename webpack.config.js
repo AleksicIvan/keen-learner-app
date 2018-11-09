@@ -2,7 +2,7 @@ const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const Jarvis = require('webpack-jarvis')
+// const Jarvis = require('webpack-jarvis')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const paths = {
@@ -11,7 +11,10 @@ const paths = {
   JS: path.resolve(__dirname, 'src/js'),
 }
 
+const env = process.env.NODE_ENV
+
 module.exports = {
+  mode: env === 'development' ? 'development' : 'production',
   entry: path.join(paths.JS, 'app.js'),
   output: {
     path: paths.DIST,
@@ -30,7 +33,7 @@ module.exports = {
     // new BundleAnalyzerPlugin({
     //   analyzerMode: 'static'
     // }),
-    new Jarvis()
+    // new Jarvis()
   ],
 
   module: {
