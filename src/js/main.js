@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { update } from 'ramda'
+import { Helmet } from 'react-helmet'
 
 import '../css/style.css'
 // import keenImage from '../assets/keen.png'
@@ -8,6 +9,7 @@ import {
   Grid,
   Table,
   Divider,
+  Button
 } from 'semantic-ui-react'
 
 import VideoLink from './components/videoLink'
@@ -24,11 +26,13 @@ export default class Main extends Component {
         videoId: null,
         watched: null
       },
-      video: null
+      video: null,
+      night: false
     }
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.isWatchedHandler = this.isWatchedHandler.bind(this)
+    this.changeMode = this.changeMode.bind(this)
   }
 
   openModal (video) {
@@ -106,17 +110,29 @@ export default class Main extends Component {
       })
   }
 
+  changeMode ()  {
+    this.setState({night: !this.state.night})
+  }
+
   render() {
     let videos = this.state.videos
     return (
       <div>
         <h1>Keen on learning?</h1>
+        <Button basic onClick={ this.changeMode }>{ this.state.night ? 'Day Mode' : 'Night Mode' }</Button>
+
+        <Helmet>
+          <style>{this.state.night
+            ? 'body { background: black; color: white; }'
+            : ''
+          }</style>
+        </Helmet>
 
         <Divider />
 
-        <Grid centered>
+        <Grid centered className={ this.state.night ? 'night' : '' }>
           <Grid.Column mobile={ 16 } tablet={ 8 } computer={ 10 }>
-            <Table celled>
+            <Table celled className={ this.state.night ? 'night' : '' }>
               <Table.Header>
                 <Table.Row textAlign='center'>
                   <Table.HeaderCell>Name</Table.HeaderCell>
