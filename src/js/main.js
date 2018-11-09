@@ -136,7 +136,7 @@ export default class Main extends Component {
               <Table.Header>
                 <Table.Row textAlign='center'>
                   <Table.HeaderCell>Name</Table.HeaderCell>
-                  <Table.HeaderCell>Status</Table.HeaderCell>
+                  <Table.HeaderCell>Watched</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
