@@ -21,9 +21,9 @@
     "prettier": "1.10.2",
     "rimraf": "^2.6.2",
     "webpack": "^3.11.0",
-    "webpack-bundle-analyzer": "^2.11.1",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^2.0.15",
-    "webpack-dev-server": "^2.11.2",
+    "webpack-dev-server": "^2.11.5",
     "webpack-jarvis": "^0.1.1"
   },
   "scripts": {
@@ -38,6 +38,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "level": "^2.1.2",
+    "lodash": "^4.17.11",
     "nodemon": "^1.17.3",
     "ramda": "^0.25.0",
     "react": "^16.3.2",
